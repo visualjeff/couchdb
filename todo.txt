@@ -1,0 +1,6 @@
+1. Test to see if build works and couchdb runs.
+2. Confirgure default admin password
+3. Configure ssl
+4. Configure external data storage via docker container
+5. Create a docker compose for multiple containers
+6. Is it possible to configure two couchdb's to automatically sync?  
