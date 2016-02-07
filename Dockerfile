@@ -10,7 +10,7 @@ ENV DEBIAN_FRONTEND noninteractive
 USER root
 
 # Install dependencies
-RUN apt-get update && apt-get dist-upgrade -y
+RUN apt-get update && apt-get dist-upgrade -y && apt-get install -y python-pip 
 
 # Install COUCHDB
 RUN add-apt-repository ppa:couchdb/stable -y;apt-get update -y;apt-get remove couchdb couchdb-bin couchdb-common -yf;apt-get install -yV couchdb;mkdir -p /var/run/couchdb
@@ -35,6 +35,10 @@ WORKDIR /root
 
 # Expose ports
 EXPOSE 5984
+
+# Aggregates stdout to docker log
+RUN easy_install supervisor==3.2.0;mkdir -p /var/log/supervisord;pip install supervisor-stdout
+
 
 # Add in supervisor configs.
 ADD ./supervisord.conf /usr/local/etc/supervisord.conf
